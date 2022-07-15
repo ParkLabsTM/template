@@ -16,7 +16,7 @@ public interface FluidEntity {
 
   void moveTo(@NotNull Location location);
 
-  void headPose(@NotNull EulerAngle angle);
+  void pose(EulerAnglePose pose, @NotNull EulerAngle angle);
 
   void customName(String name, boolean visible);
 

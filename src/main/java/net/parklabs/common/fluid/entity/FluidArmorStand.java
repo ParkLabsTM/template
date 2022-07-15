@@ -7,6 +7,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.phys.Vec3;
+import net.parklabs.common.fluid.api.EulerAnglePose;
 import net.parklabs.common.fluid.api.FluidEntity;
 import net.parklabs.common.fluid.wrapper.FluidEntityWrapper;
 import net.parklabs.common.packets.Packets;
@@ -86,12 +87,13 @@ public class FluidArmorStand extends ArmorStand implements FluidEntity {
   }
 
   @Override
-  public void headPose(@NotNull EulerAngle angle){
-    this.setHeadPose(new Rotations(
+  public void pose(EulerAnglePose pose, @NotNull EulerAngle angle) {
+    Rotations rotations = new Rotations(
       (float) Math.toDegrees(angle.getX()),
       (float) Math.toDegrees(angle.getY()),
       (float) Math.toDegrees(angle.getZ())
-    ));
+    );
+    pose.apply(this, rotations);
   }
 
   @Override
